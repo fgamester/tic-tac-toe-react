@@ -1,0 +1,15 @@
+.game-box {
+    border-style: solid;
+    border-color: #0700EA;
+    border-width: 0.3vw;
+    width: 80%;
+    height: 80%;
+    background-color: #3A6BE8;
+    border-radius: 15%;
+    transition: width 0.1s ease-out, height 0.1s ease-out;
+}
+
+.game-box:hover {
+    width: 85%;
+    height: 85%;
+}

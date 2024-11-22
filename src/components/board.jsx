@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Box from "./box";
+import '../styles/board.css'
 
-const Board = () => {
+const Board = ({ }) => {
     const [cells, setCells] = useState(new Array(9).fill(null))
 
     const checkWinner = () => {
@@ -15,16 +17,32 @@ const Board = () => {
             [2, 4, 6]
         ];
         for (lines of winnerLines) {
-            const [a, b, c] = lines
-            if (cells[a] !== null && (cells[a] === cells[b] && cells[a] === cells[c])){
+            const [a, b, c] = lines;
+            if (cells[a] !== null && (cells[a] === cells[b] && cells[a] === cells[c])) {
                 break;
             }
         }
     }
 
+    useEffect(() => {
+        const setCellSize = () => {
+            const cellSize = ((window.innerHeight < window.innerWidth) ? '20vh' : '20vw')
+            document.documentElement.style.setProperty('--cell-size', cellSize)
+        }
+        setCellSize();
+        window.addEventListener('resize', setCellSize)
+
+        return () => {
+            window.removeEventListener('resize', setCellSize)
+        }
+    }, [])
+
     return (
-        <>
-        </>
+        <div className="game-board">
+            {cells.map((item, index) => (
+                <Box key={index} />
+            ))}
+        </div>
     )
 }
 

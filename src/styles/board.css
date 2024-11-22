@@ -1,0 +1,13 @@
+:root {
+    --cell-size: 20vw;
+}
+
+
+.game-board {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, var(--cell-size));
+    grid-template-rows: repeat(3, var(--cell-size));
+}
