@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import Box from "./box";
 import '../styles/board.css'
 
-const Board = ({ }) => {
+const Board = ({turn, changeTurn }) => {
     const [cells, setCells] = useState(new Array(9).fill(null))
+
 
     const checkWinner = () => {
         const winnerLines = [
@@ -40,7 +41,7 @@ const Board = ({ }) => {
     return (
         <div className="game-board">
             {cells.map((item, index) => (
-                <Box key={index} />
+                <Box key={index} item={item} index={index} play={setCells} list={cells} turn={turn} changeTurn={changeTurn} />
             ))}
         </div>
     )

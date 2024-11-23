@@ -4,12 +4,22 @@
     border-width: 0.3vw;
     width: 80%;
     height: 80%;
-    background-color: #3A6BE8;
+    background-color: #3AA2E8;
     border-radius: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: width 0.1s ease-out, height 0.1s ease-out;
+    user-select: none;
 }
 
-.game-box:hover {
+.game-box-empty:hover {
     width: 85%;
     height: 85%;
+    cursor: pointer;
+}
+
+.game-box-painted {
+    font-size: calc(var(--cell-size) * 0.5);
+    color: #0700EA;
 }
