@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Box from "./box";
 import '../styles/board.css'
 
-const Board = ({turn, changeTurn }) => {
+const Board = ({ turn, changeTurn }) => {
     const [cells, setCells] = useState(new Array(9).fill(null))
 
 
@@ -25,13 +25,36 @@ const Board = ({turn, changeTurn }) => {
         }
     }
 
-    useEffect(() => {
-        const setCellSize = () => {
-            const cellSize = ((window.innerHeight < window.innerWidth) ? '20vh' : '20vw')
-            document.documentElement.style.setProperty('--cell-size', cellSize)
+    const calculateSize = (measure) => {
+        if (measure == 'vw') {
+            return window.innerWidth * 0.1
+        } else {
+            return window.innerHeight * 0.1
         }
-        setCellSize();
-        window.addEventListener('resize', setCellSize)
+    }
+    const setCellSize = () => {
+        const cellSize = ((window.innerHeight < window.innerWidth) ? '20vh' : '20vw')
+        document.documentElement.style.setProperty('--cell-size', cellSize)
+    }
+    const setPaintedSize = () => {
+        const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')))
+        let value = ''
+        let measure = ''
+        for (let i = 0; i < cellSize.length - 2; i++) value += cellSize[i];
+        for (let i = cellSize.length - 2; i < cellSize.length; i++) measure += cellSize[i];
+        const fontSize = calculateSize(measure);
+        const inString = fontSize > 50 ? `${fontSize}px` : '50px';
+        document.documentElement.style.setProperty('--font-size', inString)
+    }
+
+    useEffect(() => {
+        const setSizes = () => {
+            setPaintedSize();
+            setCellSize();
+        }
+        setSizes();
+
+        window.addEventListener('resize', setSizes)
 
         return () => {
             window.removeEventListener('resize', setCellSize)

@@ -1,3 +1,7 @@
+:root {
+    --font-size: calc(var(--cell-size) * 0.5)
+}
+
 .game-box {
     border-style: solid;
     border-color: #0700EA;
@@ -20,6 +24,6 @@
 }
 
 .game-box-painted {
-    font-size: calc(var(--cell-size) * 0.5);
+    font-size: var(--font-size);
     color: #0700EA;
 }
