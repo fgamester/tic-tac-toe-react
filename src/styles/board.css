@@ -8,8 +8,8 @@
 
 
 .game-board {
+    position: relative;
     display: grid;
-    justify-content: center;
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(3, minmax(100px, var(--cell-size)));
@@ -17,17 +17,23 @@
 }
 
 .winner-line {
-    border-color: #403AE8;
-    background-color: #403AE8;
-    width: calc(var(--cell-size) * 0.03);
-    height: calc(var(--cell-size) * 0.03);
+    border-color: #B23AE8;
+    background-color: #B23AE8;
+    width: calc(var(--cell-size) * 0.05);
+    height: calc(var(--cell-size) * 0.05);
     border-radius: 5px;
     transition: width 1s ease-in-out;
-    rotate: var(--line-rotation);
-    position: relative;
-    translate: var(--x-translation) var(--y-translation);
+    margin: 0;
 }
 
 .winner {
     width: var(--line-width);
+}
+
+.line-box {
+    position: absolute;
+    display: flex;
+    justify-items: start;
+    rotate: var(--line-rotation);
+    translate: var(--x-translation) var(--y-translation);
 }
