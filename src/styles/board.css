@@ -1,5 +1,9 @@
 :root {
     --cell-size: 20vw;
+    --line-width: calc(var(--cell-size) * 2.5);
+    --line-rotation: 0deg;
+    --x-translation: 0px;
+    --y-translation: 0px;
 }
 
 
@@ -8,6 +12,22 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(3, minmax(100px,var(--cell-size)));
-    grid-template-rows: repeat(3, minmax(100px,var(--cell-size)));
+    grid-template-columns: repeat(3, minmax(100px, var(--cell-size)));
+    grid-template-rows: repeat(3, minmax(100px, var(--cell-size)));
+}
+
+.winner-line {
+    border-color: #403AE8;
+    background-color: #403AE8;
+    width: calc(var(--cell-size) * 0.03);
+    height: calc(var(--cell-size) * 0.03);
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+    rotate: var(--line-rotation);
+    position: relative;
+    translate: var(--x-translation) var(--y-translation);
+}
+
+.winner {
+    width: var(--line-width);
 }
