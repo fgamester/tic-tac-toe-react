@@ -3,11 +3,13 @@
 }
 
 .game-box {
+    font-size: var(--font-size);
+    color: #0700EA;
     border-style: solid;
     border-color: #0700EA;
     border-width: 0.3vw;
-    width: 80%;
-    height: 80%;
+    width:75%;
+    height: 75%;
     background-color: #3AA2E8;
     border-radius: 15%;
     display: flex;
@@ -17,13 +19,8 @@
     user-select: none;
 }
 
-.game-box-empty:hover {
+.game-box-available:hover {
     width: 85%;
     height: 85%;
     cursor: pointer;
-}
-
-.game-box-painted {
-    font-size: var(--font-size);
-    color: #0700EA;
 }

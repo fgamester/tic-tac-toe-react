@@ -1,6 +1,6 @@
 import '../styles/box.css'
 
-const Box = ({ item, index, play, list, turn, changeTurn }) => {
+const Box = ({ item, index, play, list, turn, changeTurn, playing }) => {
 
     const paintBox = () => {
         const newList = [...list];
@@ -9,12 +9,13 @@ const Box = ({ item, index, play, list, turn, changeTurn }) => {
         } else {
             newList[index] = "X";
         }
-        changeTurn(() => !turn);
+
         play(() => newList);
+        changeTurn(prev => !prev);
     }
 
     return (
-        <div {...item == null && { onClick: paintBox }} className={`game-box ${item == null ? 'game-box-empty' : 'game-box-painted'}`}>
+        <div {...(playing && item == null) && { onClick: paintBox }} className={`game-box ${(playing && item == null) && 'game-box-available'}`}>
             {item}
         </div>
     )
