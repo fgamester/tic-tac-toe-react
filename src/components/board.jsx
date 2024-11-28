@@ -31,11 +31,11 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
 
     }
 
-    const calculateSize = (measure) => {
+    const calculateSize = (measure, value) => {
         if (measure == 'vw') {
-            return window.innerWidth * 0.1
+            return window.innerWidth * value
         } else {
-            return window.innerHeight * 0.1
+            return window.innerHeight * value
         }
     }
 
@@ -60,15 +60,17 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
         document.documentElement.style.setProperty('--cell-size', cellSize);
     }
 
-    const setPaintedSize = () => {
+    const viewPortToPixels = (MinSize, PercentageOfViewPort) => {
         const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')));
-        let value = '';
-        let measure = '';
-        for (let i = 0; i < cellSize.length - 2; i++) value += cellSize[i];
-        for (let i = cellSize.length - 2; i < cellSize.length; i++) measure += cellSize[i];
-        const fontSize = calculateSize(measure);
-        const inString = fontSize > 50 ? `${Math.round(fontSize)}px` : '50px';
-        document.documentElement.style.setProperty('--font-size', inString);
+        const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
+        let inPixels = 0;
+        measure == 'vw' ? inPixels = window.innerWidth * PercentageOfViewPort : inPixels = window.innerHeight * PercentageOfViewPort;
+        const inString = inPixels > MinSize ? `${Math.round(inPixels)}px` : `${MinSize}px`;
+        return inString;
+    }
+
+    const setPaintedSize = () => {
+        document.documentElement.style.setProperty('--font-size', viewPortToPixels(50, 0.1));
     }
 
     const setLineWidth = () => {
@@ -91,49 +93,33 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
             document.documentElement.style.setProperty('--line-rotation', '-45deg');
             console.log('135°')
         }
-    }
-
-    const verifyMeasure = (measure) => {
-        if (measure == 'vw' && window.innerWidth >= 500) return true;
-        if (measure == 'vh' && window.innerHeight >= 500) return true;
-        return false;
-    }
-
+    } 
 
     const setPosition = () => {
-        const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')))
-        const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
-        let position = '';
-        if (winnerLine == 1) {
-            position = `-100px`
-            if (verifyMeasure(measure)) position = `-${cellSize}`;
-            document.documentElement.style.setProperty('--y-translation', position);
-        }
-        if (winnerLine == 3) {
-            position = `100px`
-            if (verifyMeasure(measure)) position = `${cellSize}`;
-            document.documentElement.style.setProperty('--y-translation', position);
-        }
-        if (winnerLine == 4) {
-            position = `-100px`
-            if (verifyMeasure(measure)) position = `-${cellSize}`;
-            document.documentElement.style.setProperty('--x-translation', position);
-        }
-        if (winnerLine == 6) {
-            position = `100px`
-            if (verifyMeasure(measure)) position = `${cellSize}`;
-            document.documentElement.style.setProperty('--x-translation', position);
+        const position = viewPortToPixels(100, 0.2);
+        switch (winnerLine) {
+            case 1:
+                document.documentElement.style.setProperty('--y-translation', `-${position}`);
+                break;
+            case 3:
+                document.documentElement.style.setProperty('--y-translation', position);
+                break;
+            case 4:
+                document.documentElement.style.setProperty('--x-translation', `-${position}`);
+                break; 
+            case 6:
+                document.documentElement.style.setProperty('--x-translation', position);
+                break;
         }
     }
 
-    const setProperties = () => {
-        setCellSize();
-        setLineWidth();
-        setPaintedSize();
-        setPosition();
-    }
 
     useEffect(() => {
+        const setProperties = () => {
+            setCellSize();
+            setLineWidth();
+            setPaintedSize();
+        }
         setProperties();
 
         window.addEventListener('resize', setProperties)
@@ -144,13 +130,18 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
     }, [])
 
     useEffect(() => {
-        checkWinner();
+        checkWinner(); 
     }, [cells])
 
     useEffect(() => {
         setDirection();
-        setLineWidth();
         setPosition();
+
+        window.addEventListener('resize', setPosition)
+        
+        return () =>{
+            window.removeEventListener('resize', setPosition)
+        }
     }, [winnerLine])
 
     return (

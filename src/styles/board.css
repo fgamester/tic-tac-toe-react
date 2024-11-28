@@ -2,8 +2,8 @@
     --cell-size: 20vw;
     --line-width: calc(var(--cell-size) * 2.5);
     --line-rotation: 0deg;
-    --x-translation: 0px;
-    --y-translation: 0px;
+    --x-translation: 0;
+    --y-translation: 0;
 }
 
 
@@ -34,6 +34,5 @@
     position: absolute;
     display: flex;
     justify-items: start;
-    rotate: var(--line-rotation);
-    translate: var(--x-translation) var(--y-translation);
+    transform: translateX(var(--x-translation)) translateY(var(--y-translation)) rotate(var(--line-rotation));
 }
