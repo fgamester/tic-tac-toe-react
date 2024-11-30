@@ -1,0 +1,24 @@
+.game {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #335786;
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.end-game {
+    position: absolute;
+    background-color: black;
+    opacity: 0;
+    width: inherit;
+    height: inherit;
+    transition: opacity 1s ease-in-out;
+}
+
+.game-over{
+    opacity: 0.5;
+}

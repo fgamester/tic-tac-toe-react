@@ -6,7 +6,6 @@
     --y-translation: 0;
 }
 
-
 .game-board {
     position: relative;
     display: grid;
@@ -17,15 +16,15 @@
 }
 
 .winner-line {
-    border-color: #B23AE8;
-    background-color: #B23AE8;
+    border: none;
+    background-color: #2D3033;
     width: calc(var(--cell-size) * 0.05);
     height: calc(var(--cell-size) * 0.05);
     border-radius: 5px;
     margin: 0;
 }
 
-.transition {
+.winner-line-transition {
     transition: width 0.5s ease-in-out;
 }
 
@@ -37,5 +36,5 @@
     position: absolute;
     display: flex;
     justify-items: start;
-    transform: translateX(var(--x-translation)) translateY(var(--y-translation)) rotate(var(--line-rotation));
+    transform: translate(var(--x-translation), var(--y-translation)) rotate(var(--line-rotation));
 }

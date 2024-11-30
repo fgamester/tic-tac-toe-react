@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Box from "./box";
 import '../styles/board.css'
 
-const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
+const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => {
     const [cells, setCells] = useState(new Array(9).fill(null));
     const [timeOut, setTimeOut] = useState(false);
     const [transition, setTransition] = useState(false);
@@ -21,8 +21,9 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
         ];
         for (let l of lines) {
             const [a, b, c] = l;
-            if (cells[a] !== null && (cells[a] === cells[b] && cells[a] === cells[c])) {
-                isOver(_ => false);
+            const C = cells;
+            if (C[a] !== null && (C[a] === C[b] && C[a] === C[c])) {
+                setPlaying(_ => false);
                 setWinner(_ => true);
                 setWinnerLine(_ => lines.indexOf(l) + 1);
                 setTransition(_ => true);
@@ -31,7 +32,6 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
                 break;
             }
         }
-
     }
 
     const winnerLineWidth = (measure) => {
@@ -58,8 +58,7 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
     const viewPortToPixels = (MinSize, PercentageOfViewPort) => {
         const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')));
         const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
-        let inPixels = 0;
-        measure == 'vw' ? inPixels = window.innerWidth * PercentageOfViewPort : inPixels = window.innerHeight * PercentageOfViewPort;
+        const inPixels = measure == 'vw' ? window.innerWidth * PercentageOfViewPort : window.innerHeight * PercentageOfViewPort;
         const inString = inPixels > MinSize ? `${Math.round(inPixels)}px` : `${MinSize}px`;
         return inString;
     }
@@ -70,7 +69,7 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
 
     const setLineWidth = () => {
         const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')));
-        let measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
+        const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
         const newWidth = `${winnerLineWidth(measure)}px`;
         document.documentElement.style.setProperty('--line-width', newWidth);
     }
@@ -79,13 +78,10 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
         const w = winnerLine
         if (w >= 4 && w <= 6) {
             document.documentElement.style.setProperty('--line-rotation', '90deg');
-            console.log('90°')
         } else if (w == 7) {
             document.documentElement.style.setProperty('--line-rotation', '45deg');
-            console.log('45°')
         } else if (w == 8) {
-            document.documentElement.style.setProperty('--line-rotation', '-45deg');
-            console.log('135°')
+            document.documentElement.style.setProperty('--line-rotation', '135deg');
         }
     }
 
@@ -109,12 +105,12 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
 
 
     useEffect(() => {
-        const setProperties = () => {
+        function setProperties() {
             setCellSize();
             setPaintedSize();
         }
-        setProperties();
 
+        setProperties();
         window.addEventListener('resize', setProperties)
 
         return () => {
@@ -127,14 +123,13 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
     }, [cells])
 
     useEffect(() => {
-        const recalculatePositionAndWidth = () => {
+        function recalculatePositionAndWidth() {
             setPosition();
             setLineWidth();
         }
 
         setDirection();
         recalculatePositionAndWidth();
-
         window.addEventListener('resize', recalculatePositionAndWidth)
 
         return () => {
@@ -150,7 +145,7 @@ const Board = ({ turn, changeTurn, isOver, winner, setWinner, playing }) => {
                 ))}
                 {winner && (
                     <div className="line-box winner">
-                        <hr className={`winner-line ${transition && 'transition'} ${timeOut && 'winner'}`} />
+                        <hr className={`winner-line ${transition && 'winner-line-transition'} ${timeOut && 'winner'}`} />
                     </div>
                 )}
             </div>

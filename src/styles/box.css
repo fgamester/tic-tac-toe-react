@@ -4,13 +4,13 @@
 
 .game-box {
     font-size: var(--font-size);
-    color: #0700EA;
+    color: #32445C;
     border-style: solid;
-    border-color: #0700EA;
+    border-color: #282F38;
     border-width: 0.3vw;
     width:75%;
     height: 75%;
-    background-color: #3AA2E8;
+    background-color: #2764B2;
     border-radius: 15%;
     display: flex;
     justify-content: center;
