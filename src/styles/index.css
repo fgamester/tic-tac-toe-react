@@ -1,3 +1,12 @@
+:root {
+    --cell-size: 20vw;
+    --line-width: calc(var(--cell-size) * 2.5);
+    --line-rotation: 0deg;
+    --x-translation: 0;
+    --y-translation: 0;
+    --font-size: calc(var(--cell-size) * 0.5)
+}
+
 body {
     background-color: #32445C;
     justify-items: center;

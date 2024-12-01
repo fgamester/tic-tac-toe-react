@@ -12,13 +12,43 @@
 
 .end-game {
     position: absolute;
-    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(1, 1, 1, 0.5);
     opacity: 0;
     width: inherit;
     height: inherit;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.game-over{
-    opacity: 0.5;
+.game-over {
+    opacity: 1;
+}
+
+.modal {
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    scale: 0;
+}
+
+.modal-transform {
+    scale: 1;
+    animation: modal-intro 0.3s ease-in-out;
+}
+
+@keyframes modal-intro {
+    0% {
+        transform: scale(0);
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
