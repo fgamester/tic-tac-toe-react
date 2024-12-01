@@ -4,11 +4,17 @@
     --line-rotation: 0deg;
     --x-translation: 0;
     --y-translation: 0;
-    --font-size: calc(var(--cell-size) * 0.5)
+    --font-size: calc(var(--cell-size) * 0.5);
+    --game-color-1:#0B65DB;
+    --game-color-2:#2764B2;
+    --game-color-3:#335786;
+    --game-color-4:#32445C;
+    --game-color-5:#282F38;
+    --game-color-6:#2D3033;
 }
 
 body {
-    background-color: #32445C;
+    background-color: var(--game-color-4);
     justify-items: center;
 }
 

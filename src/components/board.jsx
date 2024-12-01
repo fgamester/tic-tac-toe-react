@@ -2,8 +2,15 @@ import { useState, useEffect } from "react";
 import Box from "./box";
 import '../styles/board.css'
 
-const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => {
-    const [cells, setCells] = useState(new Array(9).fill(null));
+const viewPortToPixels = (MinSize, PercentageOfViewPort, inString = false) => {
+    const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')));
+    const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
+    const inPixels = measure == 'vw' ? window.innerWidth * PercentageOfViewPort : window.innerHeight * PercentageOfViewPort;
+    if (inString) return inPixels > MinSize ? `${Math.round(inPixels)}px` : `${MinSize}px`;
+    return inPixels > MinSize ? inPixels : MinSize;
+}
+
+const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing, cells, setCells }) => {
     const [timeOut, setTimeOut] = useState(false);
     const [transition, setTransition] = useState(false);
     const [winnerLine, setWinnerLine] = useState(0);
@@ -30,6 +37,8 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                 setTimeout(_ => setTimeOut(_ => true), 50);
                 setTimeout(_ => setTransition(_ => false), 550);
                 break;
+            } else if (cells.every(c => c != null)) {
+                setPlaying(_ => false);
             }
         }
     }
@@ -55,16 +64,10 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
         document.documentElement.style.setProperty('--cell-size', cellSize);
     }
 
-    const viewPortToPixels = (MinSize, PercentageOfViewPort) => {
-        const cellSize = ((document.documentElement.style.getPropertyValue('--cell-size')));
-        const measure = `${cellSize[cellSize.length - 2]}${cellSize[cellSize.length - 1]}`;
-        const inPixels = measure == 'vw' ? window.innerWidth * PercentageOfViewPort : window.innerHeight * PercentageOfViewPort;
-        const inString = inPixels > MinSize ? `${Math.round(inPixels)}px` : `${MinSize}px`;
-        return inString;
-    }
 
     const setPaintedSize = () => {
-        document.documentElement.style.setProperty('--font-size', viewPortToPixels(50, 0.1));
+        const fontSize = viewPortToPixels(50, 0.1)
+        document.documentElement.style.setProperty('--font-size', `${parseFloat(fontSize.toFixed(2))}px`);
     }
 
     const setLineWidth = () => {
@@ -86,7 +89,7 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
     }
 
     const setPosition = () => {
-        const position = viewPortToPixels(100, 0.2);
+        const position = viewPortToPixels(100, 0.2, true);
         switch (winnerLine) {
             case 1:
                 document.documentElement.style.setProperty('--y-translation', `-${position}`);
@@ -102,7 +105,6 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                 break;
         }
     }
-
 
     useEffect(() => {
         function setProperties() {
@@ -136,6 +138,17 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
             window.removeEventListener('resize', recalculatePositionAndWidth)
         }
     }, [winnerLine])
+
+    useEffect(() => {
+        if (playing) {
+            setTimeOut(_ => false);
+            setTransition(_ => false);
+            setWinnerLine(_ => 0);
+            document.documentElement.style.setProperty('--line-rotation', '0deg')
+            document.documentElement.style.setProperty('--x-translation', '0')
+            document.documentElement.style.setProperty('--y-translation', '0')
+        }
+    }, [playing])
 
     return (
         <>

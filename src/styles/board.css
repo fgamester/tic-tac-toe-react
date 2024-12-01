@@ -9,7 +9,7 @@
 
 .winner-line {
     border: none;
-    background-color: #2D3033;
+    background-color: var(--game-color-6);
     width: calc(var(--cell-size) * 0.05);
     height: calc(var(--cell-size) * 0.05);
     border-radius: 5px;

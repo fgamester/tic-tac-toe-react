@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #335786;
+    background-color: var(--game-color-3);
     border-radius: 25px;
     height: 100%;
     width: 100%;
@@ -26,11 +26,16 @@
     opacity: 1;
 }
 
+h1.game-over {
+    font-size: calc(var(--font-size) * 0.5);
+}
+
 .modal {
-    background-color: white;
-    width: 50%;
-    height: 50%;
-    border-radius: 10px;
+    text-align: center;
+    background-color: var(--game-color-1);
+    padding: 3%;
+    border-radius: 20px;
+    border-style: solid;
     scale: 0;
 }
 
@@ -51,4 +56,23 @@
     100% {
         transform: scale(1);
     }
+}
+
+.winner-message {
+    font-size: calc(var(--font-size)*0.3);
+    margin-bottom: 0;
+}
+
+.winner-player {
+    font-size: calc(var(--font-size)*0.7);
+    margin: 0;
+}
+
+.play-again {
+    font-size: calc(var(--font-size)*0.3);
+    border-radius: 5px;
+}
+
+.play-again:hover{
+    background-color: var(--game-color-1);
 }

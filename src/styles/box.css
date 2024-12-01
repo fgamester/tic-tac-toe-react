@@ -1,12 +1,12 @@
 .game-box {
     font-size: var(--font-size);
-    color: #32445C;
+    color: var(--game-color-4);
     border-style: solid;
-    border-color: #282F38;
+    border-color: var(--game-color-5);
     border-width: 0.3vw;
     width:75%;
     height: 75%;
-    background-color: #2764B2;
+    background-color: var(--game-color-2);
     border-radius: 15%;
     display: flex;
     justify-content: center;
