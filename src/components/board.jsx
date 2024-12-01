@@ -10,7 +10,8 @@ const viewPortToPixels = (MinSize, PercentageOfViewPort, inString = false) => {
     return inPixels > MinSize ? inPixels : MinSize;
 }
 
-const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing, cells, setCells }) => {
+const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => {
+    const [cells, setCells] = useState(new Array(9).fill(null));
     const [timeOut, setTimeOut] = useState(false);
     const [transition, setTransition] = useState(false);
     const [winnerLine, setWinnerLine] = useState(0);
@@ -141,12 +142,13 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing, cells
 
     useEffect(() => {
         if (playing) {
+            setCells(_ => new Array(9).fill(null));
             setTimeOut(_ => false);
             setTransition(_ => false);
             setWinnerLine(_ => 0);
-            document.documentElement.style.setProperty('--line-rotation', '0deg')
-            document.documentElement.style.setProperty('--x-translation', '0')
-            document.documentElement.style.setProperty('--y-translation', '0')
+            document.documentElement.style.setProperty('--line-rotation', '0deg');
+            document.documentElement.style.setProperty('--x-translation', '0');
+            document.documentElement.style.setProperty('--y-translation', '0');
         }
     }, [playing])
 

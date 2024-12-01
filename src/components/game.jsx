@@ -3,7 +3,6 @@ import Board from "./board";
 import '../styles/game.css';
 
 const Game = () => {
-    const [cells, setCells] = useState(new Array(9).fill(null));
     const [inMenu, setInMenu] = useState(false);
     const [gameTurn, setGameTurn] = useState(true);
     const [winner, setWinner] = useState(false);
@@ -18,7 +17,6 @@ const Game = () => {
     }
 
     const playAgain = () => {
-        setCells(_ => new Array(9).fill(null));
         setGameTurn(_ => true);
         setPlaying(_ => true);
         setTransition(_ => [false, false]);
@@ -33,7 +31,7 @@ const Game = () => {
 
     return (
         <div className="game">
-            <Board cells={cells} setCells={setCells} turn={gameTurn} changeTurn={setGameTurn} setWinner={setWinner} winner={winner} setPlaying={setPlaying} playing={playing} />
+            <Board turn={gameTurn} changeTurn={setGameTurn} setWinner={setWinner} winner={winner} setPlaying={setPlaying} playing={playing} />
             {!playing && !inMenu && (
                 <div className={`end-game ${!playing && transition[0] && 'game-over'}`}>
                     <div className={`modal ${transition[1] && 'modal-transform'}`}>

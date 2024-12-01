@@ -70,9 +70,12 @@ h1.game-over {
 
 .play-again {
     font-size: calc(var(--font-size)*0.3);
+    background-color: var(--game-color-3);
     border-radius: 5px;
+    border-style: solid;
+    border-color: var(--game-color-6);
 }
 
 .play-again:hover{
-    background-color: var(--game-color-1);
+    background-color: var(--game-color-2);
 }
