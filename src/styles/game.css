@@ -78,4 +78,5 @@ h1.game-over {
 
 .play-again:hover{
     background-color: var(--game-color-2);
+    cursor: pointer;
 }
