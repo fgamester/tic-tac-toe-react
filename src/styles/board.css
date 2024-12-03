@@ -3,8 +3,8 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(3, minmax(100px, var(--cell-size)));
-    grid-template-rows: repeat(3, minmax(100px, var(--cell-size)));
+    grid-template-columns: repeat(3, var(--cell-size));
+    grid-template-rows: repeat(3, var(--cell-size));
 }
 
 .winner-line {

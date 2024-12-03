@@ -1,16 +1,19 @@
 :root {
-    --cell-size: 20vw;
-    --line-width: calc(var(--cell-size) * 2.5);
+    --game-color-1: #0B65DB;
+    --game-color-2: #2764B2;
+    --game-color-3: #335786;
+    --game-color-4: #32445C;
+    --game-color-5: #282F38;
+    --game-color-6: #2D3033;
+    --cell-size: 100px;
+    --font-size: 50px;
     --line-rotation: 0deg;
-    --x-translation: 0;
-    --y-translation: 0;
-    --font-size: calc(var(--cell-size) * 0.5);
-    --game-color-1:#0B65DB;
-    --game-color-2:#2764B2;
-    --game-color-3:#335786;
-    --game-color-4:#32445C;
-    --game-color-5:#282F38;
-    --game-color-6:#2D3033;
+    --position-x: 0;
+    --position-y: 0;
+    --x-translation: calc(var(--cell-size) * var(--position-x));
+    --y-translation: calc(var(--cell-size) * var(--position-y));
+    --winner-width: 2.5;
+    --line-width: calc(var(--cell-size) * var(--winner-width));
 }
 
 body {
@@ -20,4 +23,25 @@ body {
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+
+@media (min-width: 600px) {
+    :root {
+        --cell-size: 150px;
+        --font-size: 75px;
+        --x-translation: calc(var(--cell-size)*var(--position-x));
+        --y-translation: calc(var(--cell-size)*var(--position-y));
+        --line-width: calc(var(--cell-size) * var(--winner-width));
+    }
+}
+
+@media (min-width: 1000px) {
+    :root {
+        --cell-size: 200px;
+        --font-size: 100px;
+        --x-translation: calc(var(--cell-size)*var(--position-x));
+        --y-translation: calc(var(--cell-size)*var(--position-y));
+        --line-width: calc(var(--cell-size) * var(--winner-width));
+    }
 }
