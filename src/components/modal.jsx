@@ -1,7 +1,7 @@
 import '../styles/modal.css'
 
-const Modal = ({winner, restart, turn}) => {
-    
+const Modal = ({ winner, restart, turn }) => {
+
     return (
         <div className='screen-background'>
             <div className='modal'>

@@ -14,7 +14,6 @@ const Game = () => {
     const playAgain = () => {
         setGameTurn(_ => true);
         setPlaying(_ => true);
-        setTransition(_ => [false, false]);
         setWinner(_ => false);
     }
 
