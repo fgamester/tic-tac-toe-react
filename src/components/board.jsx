@@ -105,8 +105,8 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                     <Box key={index} item={item} index={index} play={setCells} list={cells} turn={turn} changeTurn={changeTurn} checkWinner={checkWinner} playing={playing} />
                 ))}
                 {winner && (
-                    <div className="line-box winner">
-                        <hr className={`winner-line ${transition && 'winner-line-transition'} ${timeOut && 'winner'}`} />
+                    <div className="line-box">
+                        <hr className={`winner-line `} />
                     </div>
                 )}
             </div>

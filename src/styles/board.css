@@ -10,23 +10,31 @@
 .winner-line {
     border: none;
     background-color: var(--game-color-6);
-    width: calc(var(--cell-size) * 0.05);
+    width: var(--line-width);
     height: calc(var(--cell-size) * 0.05);
     border-radius: 5px;
     margin: 0;
+    transform-origin: left;
+    animation: winner-line-intro 10s ease-in-out;
 }
 
 .winner-line-transition {
     transition: width 0.5s ease-in-out;
 }
 
-.winner {
-    width: var(--line-width);
-}
-
 .line-box {
+    width: var(--line-width);
     position: absolute;
     display: flex;
-    justify-items: start;
+    justify-content: start;
     transform: translate(var(--x-translation), var(--y-translation)) rotate(var(--line-rotation));
+}
+
+@keyframes winner-line-intro {
+    from {
+        transform: scaleX(0.05);
+    }
+    to {
+        transform: scaleX(1);
+    }
 }
