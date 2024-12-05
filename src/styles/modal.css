@@ -29,7 +29,7 @@ h1.game-over {
     padding: 3%;
     border-radius: 20px;
     border-style: solid;
-    animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro 0.3s ease-in-out var(--secs-modal-delay);
+    animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro .5s ease-in-out var(--secs-modal-delay);
 }
 
 @keyframes modal-delay {
@@ -43,15 +43,19 @@ h1.game-over {
 }
 
 @keyframes modal-intro {
-    0% {
+    from {
         transform: scale(0);
     }
 
-    80% {
+    50% {
         transform: scale(1.1);
     }
 
-    100% {
+    75% {
+        transform: scale(0.9);
+    }
+
+    to {
         transform: scale(1);
     }
 }

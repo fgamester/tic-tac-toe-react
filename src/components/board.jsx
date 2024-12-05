@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Box from "./box";
 import '../styles/board.css'
 
@@ -40,11 +40,9 @@ const setLineProperties = (winnerLine) => {
 // inicio del componente
 const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => {
     const [cells, setCells] = useState(new Array(9).fill(null));
-    const [timeOut, setTimeOut] = useState(false);
-    const [transition, setTransition] = useState(false);
     const [winnerLine, setWinnerLine] = useState(0);
 
-    const checkWinner = () => {
+    const checkWinner = useCallback((cells) => {
         const lines = [
             [0, 1, 2],
             [3, 4, 5],
@@ -62,47 +60,56 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                 setPlaying(_ => false);
                 setWinnerLine(_ => lines.indexOf(l) + 1);
                 setWinner(_ => true);
-                setTransition(_ => true);
-                setTimeout(_ => setTimeOut(_ => true), 50);
-                setTimeout(_ => setTransition(_ => false), 550);
                 break;
             } else if (cells.every(c => c != null)) {
                 setPlaying(_ => false);
             }
         }
+    }, []);
+
+    const play = (index) => {
+        changeTurn(prev => !prev);
+
+        setCells(prevCells => {
+            const newList = [...prevCells];
+            if (turn) {
+                newList[index] = "O";
+            } else {
+                newList[index] = "X";
+            }
+            return newList;
+        });
     }
 
-    const setDefaultValues = () => {
+    const setDefaultValues = useCallback(() => {
         setCells(_ => new Array(9).fill(null));
-        setTimeOut(_ => false);
-        setTransition(_ => false);
         setWinnerLine(_ => 0);
         document.documentElement.style.removeProperty('--line-rotation');
         document.documentElement.style.removeProperty('--x-translation');
         document.documentElement.style.removeProperty('--y-translation');
         document.documentElement.style.removeProperty('--position-x');
         document.documentElement.style.removeProperty('--position-y');
-    }
+    }, []);
 
     useEffect(() => {
-        checkWinner();
-    }, [cells])
+        checkWinner(cells);
+    }, [cells]);
 
     useEffect(() => {
         setLineProperties(winnerLine);
-    }, [winner])
+    }, [winner]);
 
     useEffect(() => {
         if (playing) {
             setDefaultValues();
         }
-    }, [playing])
+    }, [playing]);
 
     return (
         <>
             <div className="game-board">
                 {cells.map((item, index) => (
-                    <Box key={index} item={item} index={index} play={setCells} list={cells} turn={turn} changeTurn={changeTurn} checkWinner={checkWinner} playing={playing} />
+                    <Box key={index} item={item} index={index} play={play} playing={playing} />
                 ))}
                 {winner && (
                     <div className="line-box">
@@ -111,7 +118,7 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                 )}
             </div>
         </>
-    )
+    );
 }
 
 export default Board;

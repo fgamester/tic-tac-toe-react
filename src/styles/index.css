@@ -5,8 +5,8 @@
     --game-color-4: #32445C;
     --game-color-5: #282F38;
     --game-color-6: #2D3033;
-    --cell-size: 75px;
-    --font-size: 37.5px;
+    --cell-size: 100px;
+    --font-size: 50px;
     --line-rotation: 0deg;
     --position-x: 0;
     --position-y: 0;
@@ -14,7 +14,7 @@
     --y-translation: calc(var(--cell-size) * var(--position-y));
     --winner-width: 2.5;
     --line-width: calc(var(--cell-size) * var(--winner-width));
-    --winner-animation-duration: 0.5s;
+    --winner-animation-duration: 0.3s;
     --secs-modal-delay: 0.3s;
 }
 
@@ -27,10 +27,20 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+@media (min-width: 500px) {
+    :root {
+        --cell-size: 120px;
+        --font-size: 60px;
+        --x-translation: calc(var(--cell-size)*var(--position-x));
+        --y-translation: calc(var(--cell-size)*var(--position-y));
+        --line-width: calc(var(--cell-size) * var(--winner-width));
+    }
+}
+
 @media (min-width: 600px) {
     :root {
-        --cell-size: 100px;
-        --font-size: 50px;
+        --cell-size: 150px;
+        --font-size: 75px;
         --x-translation: calc(var(--cell-size)*var(--position-x));
         --y-translation: calc(var(--cell-size)*var(--position-y));
         --line-width: calc(var(--cell-size) * var(--winner-width));
@@ -39,8 +49,8 @@ body {
 
 @media (min-width: 1000px) {
     :root {
-        --cell-size: 150px;
-        --font-size: 75px;
+        --cell-size: 180px;
+        --font-size: 90px;
         --x-translation: calc(var(--cell-size)*var(--position-x));
         --y-translation: calc(var(--cell-size)*var(--position-y));
         --line-width: calc(var(--cell-size) * var(--winner-width));

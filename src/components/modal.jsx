@@ -1,7 +1,6 @@
 import '../styles/modal.css'
 
 const Modal = ({ winner, restart, turn }) => {
-
     return (
         <div className='screen-background'>
             <div className='modal'>
@@ -11,7 +10,7 @@ const Modal = ({ winner, restart, turn }) => {
                 <button onClick={restart} className="btn-restart">Play again</button>
             </div>
         </div>
-    )
+    );
 }
 
 export default Modal;
