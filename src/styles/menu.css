@@ -26,7 +26,7 @@ h1.game-over {
 .modal {
     text-align: center;
     background-color: var(--game-color-1);
-    padding: 3%;
+    padding: 1em;
     border-radius: 20px;
     border-style: solid;
     animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro .5s ease-in-out var(--secs-modal-delay);
@@ -73,6 +73,22 @@ h1.game-over {
     margin: 0;
 }
 
+.btn-start {
+    padding: 0;
+    width: calc(var(--cell-size) * 0.5);
+    height: calc(var(--cell-size) * 0.5);
+    font-size: calc(var(--font-size)* 0.7);
+    background-color: var(--game-color-3);
+    border-radius: calc(var(--cell-size) * 0.1);
+    border-style: solid;
+    border-color: var(--game-color-6);
+}
+
+.btn-start:hover {
+    background-color: var(--game-color-2);
+    cursor: pointer;
+}
+
 .btn-restart {
     font-size: calc(var(--font-size)*0.3);
     background-color: var(--game-color-3);
@@ -84,4 +100,27 @@ h1.game-over {
 .btn-restart:hover {
     background-color: var(--game-color-2);
     cursor: pointer;
+}
+
+#menu {
+    text-align: center;
+    background-color: var(--game-color-1);
+    padding: 1em;
+    border-radius: 20px;
+    border-style: solid;
+    animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro .5s ease-in-out var(--secs-modal-delay);
+}
+
+#menu>h3 {
+    font-size: calc(var(--font-size)*0.3);
+}
+
+#menu>h1 {
+    font-size: calc(var(--font-size)*0.5);
+}
+
+#btn-container {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--cell-size)*0.1);
 }

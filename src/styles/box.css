@@ -12,7 +12,6 @@
     justify-content: center;
     align-items: center;
     transition: width 0.1s ease-out, height 0.1s ease-out;
-    user-select: none;
 }
 
 .game-box-available:hover {

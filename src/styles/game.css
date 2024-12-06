@@ -8,4 +8,5 @@
     overflow: hidden;
     width: fit-content;
     padding: 1em;
+    user-select: none;
 }
