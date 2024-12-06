@@ -2,9 +2,7 @@ import Game from "./components/game"
 
 const App = () => {
   return (
-    <>
-      <Game />
-    </>
+    <Game />
   )
 }
 

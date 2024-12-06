@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import Board from "./board";
-import Modal from "./modal";
+import MenuBackground from "./MenuBackground";
 import '../styles/game.css';
 
 document.title = 'Tic Tac Toe';
@@ -20,7 +20,7 @@ const Game = () => {
     return (
         <div className="game">
             <Board turn={gameTurn} changeTurn={setGameTurn} setWinner={setWinner} winner={winner} setPlaying={setPlaying} playing={playing} />
-            {!playing && !inMenu && <Modal restart={playAgain} winner={winner} playing={playing} turn={gameTurn} />}
+            {!playing && <MenuBackground restart={playAgain} winner={winner} playing={playing} turn={gameTurn} />}
         </div>
     );
 }

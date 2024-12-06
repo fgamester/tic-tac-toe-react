@@ -60,16 +60,15 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
                 setPlaying(_ => false);
                 setWinnerLine(_ => lines.indexOf(l) + 1);
                 setWinner(_ => true);
-                break;
+                return;
             } else if (cells.every(c => c != null)) {
                 setPlaying(_ => false);
             }
         }
+        cells.some(c => c != null) && changeTurn(prev => !prev);
     }, []);
 
     const play = (index) => {
-        changeTurn(prev => !prev);
-
         setCells(prevCells => {
             const newList = [...prevCells];
             if (turn) {
@@ -106,18 +105,16 @@ const Board = ({ turn, changeTurn, setPlaying, winner, setWinner, playing }) => 
     }, [playing]);
 
     return (
-        <>
-            <div className="game-board">
-                {cells.map((item, index) => (
-                    <Box key={index} item={item} index={index} play={play} playing={playing} />
-                ))}
-                {winner && (
-                    <div className="line-box">
-                        <hr className={`winner-line `} />
-                    </div>
-                )}
-            </div>
-        </>
+        <div className="game-board">
+            {cells.map((item, index) => (
+                <Box key={index} item={item} index={index} play={play} playing={playing} />
+            ))}
+            {winner && (
+                <div className="line-box">
+                    <hr className={`winner-line `} />
+                </div>
+            )}
+        </div>
     );
 }
 

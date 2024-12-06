@@ -5,7 +5,7 @@
     align-items: center;
     background-color: var(--game-color-3);
     border-radius: 25px;
-    height: 100%;
-    width: 100%;
     overflow: hidden;
+    width: fit-content;
+    padding: 1em;
 }
