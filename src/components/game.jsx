@@ -18,8 +18,13 @@ const Game = () => {
         setPlayers(_ => []);
     }, []);
 
-    const startGame = useCallback((firstTurn, player1 = '', player2 = '') => {
-        setPlayers(_ => [player1, player2]);
+    const startGame = useCallback((firstTurn, player1, player2) => {
+        setPlayers(_ => {
+            const newList = new Array(2);
+            player1.trim() != '' ? newList[0] = player1 : newList[0] = 'Player 1';
+            player2.trim() != '' ? newList[1] = player2 : newList[1] = 'Player 2';
+            return newList;
+        });
         setGameTurn(_ => firstTurn);
         setPlaying(_ => true);
         setInMenu(_ => false);
@@ -27,8 +32,12 @@ const Game = () => {
 
     return (
         <div className="game">
+            <div id="turn">
+                <h2>{playing ? 'Your Turn' : 'Waiting for player...'}</h2>
+                <h1>{playing ? (gameTurn ? players[0] : players[1]) : 'O X O X O'}</h1>
+            </div>
             <Board turn={gameTurn} changeTurn={setGameTurn} setWinner={setWinner} winner={winner} setPlaying={setPlaying} playing={playing} />
-            {!playing && <MenuBackground restart={playAgain} winner={winner} menu={inMenu} turn={gameTurn} start={startGame} />}
+            {!playing && <MenuBackground restart={playAgain} winner={winner} menu={inMenu} turn={gameTurn} start={startGame} players={players}/>}
         </div>
     );
 }

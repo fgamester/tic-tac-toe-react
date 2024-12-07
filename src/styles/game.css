@@ -1,6 +1,7 @@
 .game {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--game-color-3);
@@ -9,4 +10,14 @@
     width: fit-content;
     padding: 1em;
     user-select: none;
+}
+
+#turn h2 {
+    font-size: calc(var(--font-size)*0.4);
+    text-align: center;
+}
+
+#turn h1 {
+    font-size: calc(var(--font-size)*0.5);
+    text-align: center;
 }
