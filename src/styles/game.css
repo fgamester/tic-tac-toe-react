@@ -10,14 +10,24 @@
     width: fit-content;
     padding: 1em;
     user-select: none;
+    gap: calc(var(--cell-size)*0.1);
 }
 
 #turn h2 {
     font-size: calc(var(--font-size)*0.4);
-    text-align: center;
 }
 
 #turn h1 {
     font-size: calc(var(--font-size)*0.5);
+}
+
+#turn>* {
     text-align: center;
+    margin: 0;
+}
+
+#turn {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--cell-size)*0.1);
 }

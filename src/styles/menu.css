@@ -23,13 +23,20 @@ h1.game-over {
     font-size: calc(var(--font-size) * 0.5);
 }
 
-.modal {
+#modal>* {
+    margin: 0;
+}
+
+#modal {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     background-color: var(--game-color-1);
     padding: 1em;
     border-radius: 20px;
     border-style: solid;
     animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro .5s ease-in-out var(--secs-modal-delay);
+    gap: calc(var(--cell-size) * 0.05);
 }
 
 @keyframes modal-delay {
@@ -62,15 +69,6 @@ h1.game-over {
 
 .winner-message {
     font-size: calc(var(--font-size)*0.3);
-}
-
-.remove-margin {
-    margin-bottom: 0;
-}
-
-.winner-player {
-    font-size: calc(var(--font-size)*0.7);
-    margin: 0;
 }
 
 .btn-start {
@@ -110,11 +108,11 @@ h1.game-over {
     padding: 1em;
     border-radius: 20px;
     border-style: solid;
-    animation: modal-delay var(--secs-modal-delay) steps(1, end), modal-intro .5s ease-in-out var(--secs-modal-delay);
+    animation: modal-intro .5s ease-in-out;
     gap: calc(var(--cell-size)*0.1);
 }
 
-#menu > *{
+#menu>* {
     margin: 0;
 }
 
@@ -169,6 +167,6 @@ input:focus {
     outline: none;
 }
 
-input::placeholder{
+input::placeholder {
     color: var(--game-color-4);
 }

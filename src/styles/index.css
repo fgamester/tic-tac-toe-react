@@ -27,6 +27,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+    font-size: var(--font-size);
+}
+
+h2 {
+    font-size: calc(var(--font-size)*0.4);
+}
+
+h3{
+    font-size: calc(var(--font-size)*0.3);
+}
+
 @media (min-width: 500px) {
     :root {
         --cell-size: 120px;
@@ -39,8 +51,8 @@ body {
 
 @media (min-width: 600px) {
     :root {
-        --cell-size: 150px;
-        --font-size: 75px;
+        --cell-size: 130px;
+        --font-size: 65px;
         --x-translation: calc(var(--cell-size)*var(--position-x));
         --y-translation: calc(var(--cell-size)*var(--position-y));
         --line-width: calc(var(--cell-size) * var(--winner-width));
@@ -49,8 +61,26 @@ body {
 
 @media (min-width: 1000px) {
     :root {
+        --cell-size: 150px;
+        --font-size: 75px;
+        --x-translation: calc(var(--cell-size)*var(--position-x));
+        --y-translation: calc(var(--cell-size)*var(--position-y));
+        --line-width: calc(var(--cell-size) * var(--winner-width));
+    }
+}
+@media (min-width: 1200px) {
+    :root {
         --cell-size: 180px;
         --font-size: 90px;
+        --x-translation: calc(var(--cell-size)*var(--position-x));
+        --y-translation: calc(var(--cell-size)*var(--position-y));
+        --line-width: calc(var(--cell-size) * var(--winner-width));
+    }
+}
+@media (min-width: 1400px) {
+    :root {
+        --cell-size: 200px;
+        --font-size: 100px;
         --x-translation: calc(var(--cell-size)*var(--position-x));
         --y-translation: calc(var(--cell-size)*var(--position-y));
         --line-width: calc(var(--cell-size) * var(--winner-width));
