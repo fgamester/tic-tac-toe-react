@@ -20,7 +20,8 @@
 
 body {
     background-color: var(--game-color-4);
-    justify-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 * {
