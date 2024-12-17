@@ -1,5 +1,5 @@
 .game-box {
-    font-size: var(--font-size);
+    font-size: 1rem;
     color: var(--game-color-5);
     border-style: solid;
     border-color: var(--game-color-5);

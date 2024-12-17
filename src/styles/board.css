@@ -6,7 +6,8 @@
     grid-template-columns: repeat(3, var(--cell-size));
     grid-template-rows: repeat(3, var(--cell-size));
     border-style: solid;
-    border-radius: 25px;
+    border-radius: .3rem;
+    padding: .2rem;
 }
 
 .winner-line {

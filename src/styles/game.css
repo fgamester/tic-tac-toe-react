@@ -5,20 +5,20 @@
     justify-content: center;
     align-items: center;
     background-color: var(--game-color-3);
-    border-radius: 25px;
+    border-radius: .5rem;
     overflow: hidden;
     width: fit-content;
-    padding: 1em;
+    padding: .25em;
     user-select: none;
-    gap: calc(var(--cell-size)*0.1);
+    gap: .2rem;
 }
 
 #turn h2 {
-    font-size: calc(var(--font-size)*0.4);
+    font-size: .4rem;
 }
 
 #turn h1 {
-    font-size: calc(var(--font-size)*0.5);
+    font-size: .5rem;
 }
 
 #turn>* {
